@@ -1,0 +1,8 @@
+{
+	"logger": {
+		"prefix": "lg",
+		"body": [
+			"console.log(JSON.stringify(${1:var}, 2, null) + ${2:var description})"
+		]
+	}
+}

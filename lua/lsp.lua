@@ -3,7 +3,8 @@
 --
 vim.opt.completeopt = {'menu', 'menuone', 'noselect'}
 
-require('luasnip.loaders.from_vscode').lazy_load({paths = {'./lua'}})
+require("luasnip").filetype_extend("all", { "json", "typescript" })
+require('luasnip.loaders.from_vscode').load({paths = {'~/.config/nvim/lua/snippets'}})
 require('luasnip.loaders.from_vscode').lazy_load()
 
 local cmp = require('cmp')
@@ -187,6 +188,11 @@ lspconfig.eslint.setup({
 lspconfig.tsserver.setup{
   on_attach = on_attach,
   flags = lsp_flags,
+  settings = {
+    completions = {
+      completeFunctionCalls = true
+    }
+  }
 }
 
 

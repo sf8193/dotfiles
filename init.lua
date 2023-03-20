@@ -12,7 +12,6 @@ require('lsp')
 require('opts')      -- Options
 require('keymappings')      -- Keymaps
 require('plug')      -- Plugins
-require('snippets')
 
 -- Lua
 require('onedark').setup {
