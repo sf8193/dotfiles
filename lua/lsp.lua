@@ -3,7 +3,7 @@
 --
 vim.opt.completeopt = {'menu', 'menuone', 'noselect'}
 
-require("luasnip").filetype_extend("all", { "json", "typescript" })
+require("luasnip").filetype_extend("typescript", { "json", "javascript" })
 require('luasnip.loaders.from_vscode').load({paths = {'~/.config/nvim/lua/snippets'}})
 require('luasnip.loaders.from_vscode').lazy_load()
 

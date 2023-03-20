@@ -28,7 +28,6 @@ opt.splitright = true            -- bool: Place new window to right of current o
 opt.splitbelow = true   
 
 --[[ opts.lua ]]
-local opt = vim.opt
 local cmd = vim.api.nvim_command
 
 -- Snip...

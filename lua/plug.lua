@@ -18,7 +18,7 @@ return require('packer').startup({function(use)
   use {'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async'}
 
   use {'lewis6991/gitsigns.nvim' }
-  use { 'phaazon/hop.nvim', branch = 'v2' }  
+  use { 'phaazon/hop.nvim', branch = 'v2' }
   use {'nvim-treesitter/nvim-treesitter'}
   use {'nvim-treesitter/nvim-treesitter-textobjects'}
   use { 'hrsh7th/cmp-nvim-lsp'}

@@ -115,6 +115,7 @@ function checkout(){
 		git checkout $1
 	fi
 }
+
 function pull(){
 	if [ -z "$1" ]; then # first argument is null, pull current branch
 		git pull origin $(git symbolic-ref --short -q HEAD)
