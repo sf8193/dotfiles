@@ -290,3 +290,5 @@ source $ZSH/oh-my-zsh.sh
  
 export NVM_DIR="/Users/sfelder/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+-e 
+alias luamake=/Users/sfelder/lua-language-server/3rd/luamake/luamake
