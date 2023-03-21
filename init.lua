@@ -20,7 +20,11 @@ require('onedark').setup {
 
 require('onedark').load()
 
-require('nvim-tree').setup{}
+require('nvim-tree').setup{
+    filters = {
+      dotfiles = true,
+    },
+}
 require('nvim-treesitter.configs').setup({
   highlight = {
     -- `false` will disable the whole extension

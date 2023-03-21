@@ -10,7 +10,7 @@ vim.keymap.set('n', '<C-h>', '<C-W>h', noremap )
 vim.keymap.set('n', '<C-l>', '<C-W>l', noremap )
 
 vim.keymap.set('n', '<leader>n', '<cmd>NvimTreeToggle<cr>', {})
-vim.keymap.set('n', '<leader><space>', '<cmd>Telescope buffers<cr>')
+vim.keymap.set('n', '<leader>fb', '<cmd>Telescope buffers<cr>')
 vim.keymap.set('n', '<leader>?', '<cmd>Telescope oldfiles<cr>')
 vim.keymap.set('n', '<leader>ff', '<cmd>Telescope find_files<cr>')
 vim.keymap.set('n', '<leader>fg', '<cmd>Telescope live_grep<cr>')
