@@ -2,7 +2,7 @@
 	"logger": {
 		"prefix": "lg",
 		"body": [
-			"console.log(JSON.stringify(${1:var}, 2, null) + ${2:var description})"
+			"console.log(JSON.stringify(${1:var}, null, 2) + ${2:var description})"
 		]
 	},
 

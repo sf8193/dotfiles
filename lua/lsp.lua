@@ -20,9 +20,9 @@ cmp.setup({
   },
   sources = {
     {name = 'path'},
-    {name = 'nvim_lsp', keyword_length = 3},
-    {name = 'buffer', keyword_length = 3},
-    {name = 'luasnip', keyword_length = 2},
+    {name = 'nvim_lsp', keyword_length = 3, max_item_count = 15},
+    {name = 'buffer', keyword_length = 3, max_item_count = 8},
+    {name = 'luasnip', keyword_length = 2, max_item_count = 4},
   },
   window = {
     documentation = cmp.config.window.bordered()
@@ -133,18 +133,17 @@ vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
   {border = 'rounded'}
 )
 
-local sign = function(opts)
-  vim.fn.sign_define(opts.name, {
-    texthl = opts.name,
-    text = opts.text,
-    numhl = ''
-  })
-end
 
+local navic = require("nvim-navic")
+local navbuddy = require("nvim-navbuddy")
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
   -- Enable completion triggered by <c-x><c-o>
+    if client.server_capabilities.documentSymbolProvider then
+        navic.attach(client, bufnr)
+        navbuddy.attach(client, bufnr)
+    end
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
   -- Mappings.
@@ -176,7 +175,6 @@ local lsp_flags = {
   debounce_text_changes = 150,
 }
 lspconfig.eslint.setup({
-  --- ...
   on_attach = function(client, bufnr)
     vim.api.nvim_create_autocmd("BufWritePre", {
       buffer = bufnr,
