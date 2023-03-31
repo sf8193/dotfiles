@@ -38,7 +38,7 @@ vim.keymap.set('n', '[g', '<cmd>Gitsigns prev_hunk<cr>')
 vim.keymap.set('n', ']g', '<cmd>Gitsigns next_hunk<cr>')
 vim.keymap.set('n', '<leader>gb', '<cmd>Git blame<cr>')
 vim.keymap.set('n', '<leader>gd', '<cmd>Git diff<cr>')
-vim.keymap.set('n', 'zR', require('ufo').openAllFolds)
+vim.keymap.set('n', 'zO', require('ufo').openAllFolds)
 vim.keymap.set('n', 'zM', require('ufo').closeAllFolds)
 
 -- Mappings.

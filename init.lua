@@ -1,4 +1,17 @@
---[[ init.lua ]]
+--[[ setup.lua ]]
+--
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
 
 -- LEADER
 -- These keybindings need to be defined before the first /
@@ -7,14 +20,15 @@ vim.g.mapleader = " "
 vim.g.localleader = "\\"
 
 -- IMPORTS
+
+require('plug')      -- Plugins
 require('vars')      -- Variables
 require('lsp')
 require('opts')      -- Options
-require('keymappings')      -- Keymaps
-require('plug')      -- Plugins
+require('keyMappings')      -- Keymaps
 
 -- Lua
-require('onedark').setup {
+require('onedark').setup{
     style = 'warmer'
 }
 require('onedark').load()
