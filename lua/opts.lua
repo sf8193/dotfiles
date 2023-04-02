@@ -25,12 +25,7 @@ opt.tabstop = 2                  -- num:  Number of spaces tabs count for
 
 -- [[ Splits ]]
 opt.splitright = true            -- bool: Place new window to right of current one
-opt.splitbelow = true   
-
---[[ opts.lua ]]
-local cmd = vim.api.nvim_command
-
--- Snip...
+opt.splitbelow = true
 
 -- [[ Theme ]]
 opt.syntax = "ON"                -- str:  Allow syntax highlighting
@@ -40,3 +35,9 @@ vim.o.foldcolumn = '0' -- '0' is not bad
 vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
 vim.o.foldlevelstart = 99
 vim.o.foldenable = true
+
+--[[ vars.lua ]]
+
+local g = vim.g
+g.t_co = 256
+g.background = "dark"
