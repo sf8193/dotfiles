@@ -1,6 +1,7 @@
 --[[ opts.lua ]]
 local opt = vim.opt
 
+
 -- [[ Context ]]
 opt.number = true                -- bool: Show line numbers
 opt.relativenumber = true        -- bool: Show relative line numbers

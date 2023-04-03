@@ -1,5 +1,4 @@
 --[[ keys.lua ]]
-
 local noremap = {noremap=true}
 local opts = { unpack(noremap), silent=true }
 
