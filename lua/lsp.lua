@@ -134,16 +134,10 @@ vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
 )
 
 
-local navic = require("nvim-navic")
-local navbuddy = require("nvim-navbuddy")
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
-local on_attach = function(client, bufnr)
+local on_attach = function(_, bufnr)
   -- Enable completion triggered by <c-x><c-o>
-    if client.server_capabilities.documentSymbolProvider then
-        navic.attach(client, bufnr)
-        navbuddy.attach(client, bufnr)
-    end
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
   -- Mappings.
@@ -175,7 +169,7 @@ local lsp_flags = {
   debounce_text_changes = 150,
 }
 lspconfig.eslint.setup({
-  on_attach = function(client, bufnr)
+  on_attach = function(_, bufnr)
     vim.api.nvim_create_autocmd("BufWritePre", {
       buffer = bufnr,
       command = "EslintFixAll",
@@ -195,6 +189,7 @@ lspconfig.tsserver.setup{
 
 
 lspconfig.lua_ls.setup {
+  on_attach=on_attach,
   settings = {
     Lua = {
       runtime = {

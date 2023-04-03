@@ -1,13 +1,5 @@
 return {
    {'nvim-telescope/telescope-fzf-native.nvim', build= 'make' },
-   {
-      'SmiteshP/nvim-navbuddy',
-      dependencies = {
-          'neovim/nvim-lspconfig',
-          'SmiteshP/nvim-navic',
-          'MunifTanjim/nui.nvim'
-      }
-    },
    'tpope/vim-fugitive',-- git integration
    'tpope/vim-surround',
    'hrsh7th/cmp-nvim-lsp',
