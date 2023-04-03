@@ -1,16 +1,16 @@
 --https://vonheikemen.github.io/devlog/tools/setup-nvim-lspconfig-plus-nvim-cmp/
 --
 --
-vim.opt.completeopt = {'menu', 'menuone', 'noselect'}
+vim.opt.completeopt = { 'menu', 'menuone', 'noselect' }
 
 require("luasnip").filetype_extend("typescript", { "json", "javascript" })
-require('luasnip.loaders.from_vscode').load({paths = {'~/.config/nvim/lua/snippets'}})
+require('luasnip.loaders.from_vscode').load({ paths = { '~/.config/nvim/lua/snippets' } })
 require('luasnip.loaders.from_vscode').lazy_load()
 
 local cmp = require('cmp')
 local luasnip = require('luasnip')
 
-local select_opts = {behavior = cmp.SelectBehavior.Select}
+local select_opts = { behavior = cmp.SelectBehavior.Select }
 
 cmp.setup({
   snippet = {
@@ -19,16 +19,16 @@ cmp.setup({
     end
   },
   sources = {
-    {name = 'path'},
-    {name = 'nvim_lsp', keyword_length = 3, max_item_count = 15},
-    {name = 'buffer', keyword_length = 3, max_item_count = 8},
-    {name = 'luasnip', keyword_length = 2, max_item_count = 4},
+    { name = 'path' },
+    { name = 'nvim_lsp', keyword_length = 3, max_item_count = 15 },
+    { name = 'buffer',   keyword_length = 3, max_item_count = 8 },
+    { name = 'luasnip',  keyword_length = 2, max_item_count = 4 },
   },
   window = {
     documentation = cmp.config.window.bordered()
   },
   formatting = {
-    fields = {'menu', 'abbr', 'kind'},
+    fields = { 'menu', 'abbr', 'kind' },
     format = function(entry, item)
       local menu_icon = {
         nvim_lsp = 'LSP',
@@ -44,32 +44,26 @@ cmp.setup({
   mapping = {
     ['<Up>'] = cmp.mapping.select_prev_item(select_opts),
     ['<Down>'] = cmp.mapping.select_next_item(select_opts),
-
     ['<C-p>'] = cmp.mapping.select_prev_item(select_opts),
     ['<C-n>'] = cmp.mapping.select_next_item(select_opts),
-
     ['<C-u>'] = cmp.mapping.scroll_docs(-4),
     ['<C-d>'] = cmp.mapping.scroll_docs(4),
-
     ['<C-e>'] = cmp.mapping.abort(),
-    ['<CR>'] = cmp.mapping.confirm({select= true}),
-
+    ['<CR>'] = cmp.mapping.confirm({ select = true }),
     ['<C-f>'] = cmp.mapping(function(fallback)
       if luasnip.jumpable(1) then
         luasnip.jump(1)
       else
         fallback()
       end
-    end, {'i', 's'}),
-
+    end, { 'i', 's' }),
     ['<C-b>'] = cmp.mapping(function(fallback)
       if luasnip.jumpable(-1) then
         luasnip.jump(-1)
       else
         fallback()
       end
-    end, {'i', 's'}),
-
+    end, { 'i', 's' }),
     ['<Tab>'] = cmp.mapping(function(fallback)
       local col = vim.fn.col('.') - 1
 
@@ -80,15 +74,14 @@ cmp.setup({
       else
         cmp.complete()
       end
-    end, {'i', 's'}),
-
+    end, { 'i', 's' }),
     ['<S-Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_prev_item(select_opts)
       else
         fallback()
       end
-    end, {'i', 's'}),
+    end, { 'i', 's' }),
   },
 })
 
@@ -110,10 +103,10 @@ local sign = function(opts)
   })
 end
 
-sign({name = 'DiagnosticSignError', text = '✘'})
-sign({name = 'DiagnosticSignWarn', text = '▲'})
-sign({name = 'DiagnosticSignHint', text = '⚑'})
-sign({name = 'DiagnosticSignInfo', text = ''})
+sign({ name = 'DiagnosticSignError', text = '✘' })
+sign({ name = 'DiagnosticSignWarn', text = '▲' })
+sign({ name = 'DiagnosticSignHint', text = '⚑' })
+sign({ name = 'DiagnosticSignInfo', text = '' })
 
 vim.diagnostic.config({
   virtual_text = false,
@@ -125,12 +118,12 @@ vim.diagnostic.config({
 })
 vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
   vim.lsp.handlers.hover,
-  {border = 'rounded'}
+  { border = 'rounded' }
 )
 
 vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
   vim.lsp.handlers.signature_help,
-  {border = 'rounded'}
+  { border = 'rounded' }
 )
 
 
@@ -139,25 +132,19 @@ vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
 local on_attach = function(_, bufnr)
   -- Enable completion triggered by <c-x><c-o>
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-
   -- Mappings.
   -- See `:help vim.lsp.*` for documentation on any of the below functions
-  local bufopts = { noremap=true, silent=true, buffer=bufnr }
+  local bufopts = { noremap = true, silent = true, buffer = bufnr }
   vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
   vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
   vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
   vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
   vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
-  vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
-  vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
-  vim.keymap.set('n', '<space>wl', function()
-    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-  end, bufopts)
-  vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
-  vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
-  vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
+  vim.keymap.set('n', '<leader>D', vim.lsp.buf.type_definition, bufopts)
+  vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, bufopts)
+  vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, bufopts)
   vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
-  vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, bufopts)
+  vim.keymap.set('n', '<leader>f', function() vim.lsp.buf.format { async = true } end, bufopts)
 end
 
 ---
@@ -177,7 +164,7 @@ lspconfig.eslint.setup({
   end,
 })
 
-lspconfig.tsserver.setup{
+lspconfig.tsserver.setup {
   on_attach = on_attach,
   flags = lsp_flags,
   settings = {
@@ -189,7 +176,7 @@ lspconfig.tsserver.setup{
 
 
 lspconfig.lua_ls.setup {
-  on_attach=on_attach,
+  on_attach = on_attach,
   settings = {
     Lua = {
       runtime = {
@@ -198,7 +185,7 @@ lspconfig.lua_ls.setup {
       },
       diagnostics = {
         -- Get the language server to recognize the `vim` global
-        globals = {'vim'},
+        globals = { 'vim' },
       },
       workspace = {
         -- Make the server aware of Neovim runtime files
