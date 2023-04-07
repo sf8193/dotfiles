@@ -21,6 +21,7 @@ vim.g.mapleader = " "
 require('lazy').setup('plugins')
 require('telescope').load_extension('fzf')
 require('telescope').load_extension('neoclip')
+require("telescope").load_extension("session-lens")
 require('keyMappings')
 require('lsp')
 require('opts')

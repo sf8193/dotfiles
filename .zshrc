@@ -5,6 +5,8 @@ export PATH=$PATH:$HOME/go
 export ZSH=$HOME/.oh-my-zsh
 
 export JIRA_API_TOKEN=ATATT3xFfGF06KxZ4CtIq6QjQ8ekGjuZgEbgQwjHBaUthPenpsEVYrS-jH6YNC5K70X2RHC8ElaB6vLTNg-FdEnNVuv-dSQNk12yDeqjr_DGRjT1bFyq9i_EWldQeq0noAZTFOWi6c8hEhjfgjbMHKNzS9aKR6loFJCY93_HbdvcUjgTQCowcgY=C62242D4
+
+export gh_token=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
 export NVM_LAZY_LOAD=true
 
 ZSH_THEME="robbyrussell"
@@ -66,7 +68,7 @@ alias jel="jira epic list ${EPIC_ID}"
 alias jea="jira epic add ${EPIC_ID} $1"
 
 alias jsa="jira sprint add ${SPRINT_ID} $1"
-alias jsv="jira sprint list --current --order-by=assignee"
+alias jsv="jira sprint list ${SPRINT_ID} --order-by=assignee"
 alias jsvt="jira sprint list ${SPRINT_ID} -s'To Do' -a$(jira me) --order-by=priority"
 alias jsvp="jira sprint list ${SPRINT_ID} -s'In Progress' -a$(jira me) --order-by=priority"
 alias jsvm="jira sprint list ${SPRINT_ID} -a$(jira me) --order-by=priority"
@@ -79,20 +81,20 @@ alias jivr="jira issue list -s'Code Review' -a$(jira me)"
 alias jivd="jira issue list -s'Done' -a$(jira me)"
 alias jic="jira issue create -tTask"
 alias jim="jira issue move"
-alias jibug="jira issue create -tBug"
+alias jicb="jira issue create -tBug"
 alias jil="jira issue link"
 
 function jimt() {
-  jira issue move $1 -s'To Do'
+  jira issue move $1 'To Do'
 }
 function jiam() {
   jira issue assign $1 $(jira me)
 }
 function jimr() {
-  jira issue move $1 -s'Code Review'
+  jira issue move $1 'Code Review'
 }
 function jimp(){
-  jira issue move $1 -s'In Progress'
+  jira issue move $1 'In Progress'
 }
 
 function jnow() {

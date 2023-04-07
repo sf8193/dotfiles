@@ -6,9 +6,5 @@ return {
           'MunifTanjim/nui.nvim'
       },
       event = 'LspAttach',
-      config = {
-         lsp = {
-            auto_attach = true,
-          },
-      }
+      config = true
     }

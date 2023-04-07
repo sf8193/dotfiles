@@ -1,17 +1,15 @@
-
-local function navic_info()
-    return require("nvim-navic").get_location()
-end
-
-local function navic_ok()
-    return require("nvim-navic").is_available()
-end
-
+--
+-- local function navic_info()
+--     return require("nvim-navic").get_location()
+-- end
+--
+-- local function navic_ok()
+--     return require("nvim-navic").is_available()
+-- end
+--
+local session = require('auto-session-library')
 return {
   'nvim-lualine/lualine.nvim',
-  dependencies ={
-    'nvim-navic'
-  },
   config =  {
     options = {
       theme = 'onedark',
@@ -23,10 +21,7 @@ return {
     --      path=0,
     --     },
     -- },
-      lualine_x = {{
-          navic_info,
-          cond = navic_ok
-      }},
+      lualine_x = { session.current_session_name },
     },
     tabline = {
       lualine_a = {

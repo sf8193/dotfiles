@@ -8,5 +8,21 @@ return {
     },
     config = function ()
       vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
+
+   require("neo-tree").setup({
+     filesystem = {
+       window = {
+         mappings = {
+           ["y"] = {
+             "copy_to_clipboard",
+             nowait = true,
+             config = {
+               show_path = "none" -- "none", "relative", "absolute"
+             }
+           },
+         }
+       }
+     }
+   })
     end
 }

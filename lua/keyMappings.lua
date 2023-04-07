@@ -8,8 +8,24 @@ vim.keymap.set('n', '<C-k>', '<C-W>k', noremap )
 vim.keymap.set('n', '<C-h>', '<C-W>h', noremap )
 vim.keymap.set('n', '<C-l>', '<C-W>l', noremap )
 
+function ReloadAlpha()
+    for k in pairs(package.loaded) do
+        if k:match("^ghr") then
+            package.loaded[k] = nil
+        end
+    end
+  end
+
+function Combine()
+  ReloadAlpha()
+  require("ghr")
+end
+
+vim.keymap.set('n', '<leader>pra', Combine, {})
+vim.keymap.set('n', '<leader>gs', '<cmd>Neotree float git_status<cr>', {})
 vim.keymap.set('n', '<leader>o', '<cmd>Neotree reveal toggle<cr>', {})
 vim.keymap.set('n', '<leader>gs', '<cmd>Neotree float git_status<cr>', {})
+vim.keymap.set('n', '<leader>ts', '<cmd>SearchSession<cr>')
 vim.keymap.set('n', '<leader>j', '<cmd>Navbuddy<cr>', {})
 vim.keymap.set('n', '<leader>fb', '<cmd>Telescope buffers<cr>')
 vim.keymap.set('n', '<leader>?', '<cmd>Telescope oldfiles<cr>')
