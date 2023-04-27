@@ -10,7 +10,7 @@
 local session = require('auto-session-library')
 return {
   'nvim-lualine/lualine.nvim',
-  config =  {
+  opts =  {
     options = {
       theme = 'onedark',
     },

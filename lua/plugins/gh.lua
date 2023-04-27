@@ -1,6 +1,7 @@
 return {
     'ldelossa/gh.nvim',
     dependencies = 'ldelossa/litee.nvim',
+    cmd= "GHOpenPR",
     config = function()
       require('litee.lib').setup({
         tree = {

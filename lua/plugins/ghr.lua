@@ -1,4 +1,5 @@
-return {
-  {dir='~/projects/ghr', config=true},
-}
+-- return {
+--   {dir='~/projects/ghr', config=true},
+-- }
+return {}
 

@@ -23,4 +23,3 @@ ls.add_snippets("typescript", {
             text("')")
         }),
 })
-

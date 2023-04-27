@@ -6,6 +6,15 @@
 		]
 	},
 
+	"loggerUtil": {
+		"prefix": "lug",
+		"body": [
+      "//@ts-ignore: no require",
+      "const util = require('util')",
+			"console.log(util.inspect(${1:var}) + ${2:var description})"
+		]
+	},
+
 	"const assignment": {
 		"prefix": "co",
 		"body": [

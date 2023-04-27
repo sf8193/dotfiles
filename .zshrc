@@ -61,7 +61,7 @@ plugins=(zsh-nvm zsh-autosuggestions fasd)
 
 
 EPIC_ID=5921 #hooks
-SPRINT_ID=2890
+SPRINT_ID=2942
 
 # listing epics and sprints
 alias jel="jira epic list ${EPIC_ID}"

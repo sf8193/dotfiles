@@ -1,7 +1,7 @@
 return {
   'ruifm/gitlinker.nvim',
   dependencies = 'nvim-lua/plenary.nvim',
-  config = {
+  opts = {
     callbacks = {
       ["git.blendlabs.com"] = function(url_data)
           local url = require"gitlinker.hosts".get_base_https_url(url_data) ..

@@ -1,7 +1,7 @@
 return {
    'phaazon/hop.nvim',
    branch = 'v2',
-   config = {
+   opts = {
     keys = 'etovxqpdygfblzhckisuran' 
    },
 }

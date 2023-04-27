@@ -22,9 +22,6 @@ function Combine()
 end
 
 vim.keymap.set('n', '<leader>pra', Combine, {})
-vim.keymap.set('n', '<leader>gs', '<cmd>Neotree float git_status<cr>', {})
-vim.keymap.set('n', '<leader>o', '<cmd>Neotree reveal toggle<cr>', {})
-vim.keymap.set('n', '<leader>gs', '<cmd>Neotree float git_status<cr>', {})
 vim.keymap.set('n', '<leader>ts', '<cmd>SearchSession<cr>')
 vim.keymap.set('n', '<leader>j', '<cmd>Navbuddy<cr>', {})
 vim.keymap.set('n', '<leader>fb', '<cmd>Telescope buffers<cr>')

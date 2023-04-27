@@ -1,7 +1,7 @@
 return {
   'AckslD/nvim-neoclip.lua',
   dependencies = 'nvim-telescope/telescope.nvim',
-  config = {
+  opts = {
     default_register = '*',
         keys = {
           telescope = {
