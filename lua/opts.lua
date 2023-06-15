@@ -4,7 +4,7 @@ local opt = vim.opt
 
 -- [[ Context ]]
 opt.number = true                -- bool: Show line numbers
-opt.relativenumber = true        -- bool: Show relative line numbers
+opt.relativenumber = false        -- bool: Show relative line numbers
 opt.scrolloff = 10                -- int:  Min num lines of context
 opt.signcolumn = "auto"           -- str:  Show the sign column
 vim.opt.clipboard = 'unnamed'

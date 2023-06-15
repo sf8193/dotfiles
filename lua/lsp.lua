@@ -132,10 +132,10 @@ vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
 local on_attach = function(client, bufnr)
   -- Enable completion triggered by <c-x><c-o>
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-        if client.server_capabilities.documentSymbolProvider then
-          require("nvim-navic").attach(client, bufnr)
-          require("nvim-navbuddy").attach(client, bufnr)
-        end
+  if client.server_capabilities.documentSymbolProvider then
+    require("nvim-navic").attach(client, bufnr)
+    require("nvim-navbuddy").attach(client, bufnr)
+  end
   -- Mappings.
   -- See `:help vim.lsp.*` for documentation on any of the below functions
   local bufopts = { noremap = true, silent = true, buffer = bufnr }
@@ -159,6 +159,7 @@ local lsp_flags = {
   -- This is the default in Nvim 0.7+
   debounce_text_changes = 150,
 }
+
 lspconfig.eslint.setup({
   on_attach = function(_, bufnr)
     vim.api.nvim_create_autocmd("BufWritePre", {
@@ -167,7 +168,20 @@ lspconfig.eslint.setup({
     })
   end,
 })
-
+lspconfig.pyright.setup {
+  on_attach = on_attach,
+  settings = {
+    pyright = { autoImportCompletion = true, },
+    python = {
+      analysis = {
+        autoSearchPaths = true,
+        diagnosticMode = 'openFilesOnly',
+        useLibraryCodeForTypes = true,
+        typeCheckingMode = 'off'
+      }
+    }
+  }
+}
 lspconfig.tsserver.setup {
   on_attach = on_attach,
   flags = lsp_flags,
@@ -175,28 +189,28 @@ lspconfig.tsserver.setup {
     completions = {
       completeFunctionCalls = true
     },
-    -- javascript = {
-    --     inlayHints = {
-    --         includeInlayEnumMemberValueHints = true,
-    --         includeInlayFunctionLikeReturnTypeHints = true,
-    --         includeInlayFunctionParameterTypeHints = true,
-    --         includeInlayParameterNameHints = "all", -- 'none' | 'literals' | 'all';
-    --         includeInlayParameterNameHintsWhenArgumentMatchesName = true,
-    --         includeInlayPropertyDeclarationTypeHints = true,
-    --         includeInlayVariableTypeHints = true,
-    --     },
-    -- },
-    -- typescript = {
-    --     inlayHints = {
-    --         includeInlayEnumMemberValueHints = true,
-    --         includeInlayFunctionLikeReturnTypeHints = true,
-    --         includeInlayFunctionParameterTypeHints = true,
-    --         includeInlayParameterNameHints = "all", -- 'none' | 'literals' | 'all';
-    --         includeInlayParameterNameHintsWhenArgumentMatchesName = true,
-    --         includeInlayPropertyDeclarationTypeHints = true,
-    --         includeInlayVariableTypeHints = true,
-    --     },
-    -- },
+    javascript = {
+        inlayHints = {
+            includeInlayEnumMemberValueHints = true,
+            includeInlayFunctionLikeReturnTypeHints = true,
+            includeInlayFunctionParameterTypeHints = true,
+            includeInlayParameterNameHints = "all", -- 'none' | 'literals' | 'all';
+            includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+            includeInlayPropertyDeclarationTypeHints = true,
+            includeInlayVariableTypeHints = true,
+        },
+    },
+    typescript = {
+        inlayHints = {
+            includeInlayEnumMemberValueHints = true,
+            includeInlayFunctionLikeReturnTypeHints = true,
+            includeInlayFunctionParameterTypeHints = true,
+            includeInlayParameterNameHints = "all", -- 'none' | 'literals' | 'all';
+            includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+            includeInlayPropertyDeclarationTypeHints = true,
+            includeInlayVariableTypeHints = true,
+        },
+    },
   }
 }
 

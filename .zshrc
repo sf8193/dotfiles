@@ -60,7 +60,7 @@ plugins=(zsh-nvm zsh-autosuggestions fasd)
  eval "$(fasd --init auto)"
 
 
-EPIC_ID=5921 #hooks
+EPIC_ID=7017 #performance
 SPRINT_ID=2942
 
 # listing epics and sprints
@@ -71,7 +71,7 @@ alias jsa="jira sprint add ${SPRINT_ID} $1"
 alias jsv="jira sprint list ${SPRINT_ID} --order-by=assignee"
 alias jsvt="jira sprint list ${SPRINT_ID} -s'To Do' -a$(jira me) --order-by=priority"
 alias jsvp="jira sprint list ${SPRINT_ID} -s'In Progress' -a$(jira me) --order-by=priority"
-alias jsvm="jira sprint list ${SPRINT_ID} -a$(jira me) --order-by=priority"
+alias jsvm="jira sprint list --current -a$(jira me) --order-by=priority"
 alias jsvr="jira sprint list ${SPRINT_ID} -s'Code Review' -a$(jira me) --order-by=priority"
 alias jivt="jira issue list -s'To Do' -a$(jira me)"
 alias jivp="jira issue list -s'In Progress' -a$(jira me)"
@@ -228,23 +228,22 @@ function start(){
 	IGNORE_COMPILE_ERRS=true DESIGNER_CLIENT_URL_OVERRIDE=http://localhost:3200 npm start
 
   elif [[ "$1" == "designer" ]]; then
-    nvm use 16.14.0
   	killP 3200
 	cd ~/cb-platform-ui
 	if ${PULL}; then
 		git pull
-        lerna bootstrap
+    lerna bootstrap
 	fi
 	BROWSER=none PORT=3200 PUBLIC_URL=/designer yarn start:designer
   elif [[ "$1" == "applicant" ]]; then
-    nvm use 16.14.0
   	killP 3100
 	cd ~/cb-platform-ui
 	if ${PULL}; then
 		git pull
-        lerna bootstrap
+    lerna bootstrap
 	fi
-	BROWSER=none PORT=3100 PUBLIC_URL=/cbp-applicant yarn start:applicant
+  cd  ~/cb-platform-ui/packages/applicant/
+	BROWSER=none PORT=3100 PUBLIC_URL=/cbp-applicant yarn start
   elif [[ "$1" == "lending" ]]; then
   	cd ~/lending
 	git checkout master
@@ -253,7 +252,7 @@ function start(){
         npm ci
 	fi
 	cd backend
-	nvm use 14.16.1
+	nvm use 18.14.2
 	CONFIGURABLE_PRODUCTS_HOST=http://localhost:9038 CBP_APPLICANT_APP_URL_OVERRIDE=http://localhost:3100 npm start -- --services=web;
   elif [[ "$1" == "all" ]]; then
   	osascript ~/startApps.sh
@@ -286,6 +285,8 @@ source $ZSH/oh-my-zsh.sh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 . ~/.ghcup/env
+ 
+export VIRTUAL_ENV_DISABLE_PROMPT=0
  
 # export NVM_DIR="/Users/sfelder/.nvm"
 # [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm 

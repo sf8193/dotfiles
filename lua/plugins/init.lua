@@ -2,7 +2,6 @@ return {
    {'nvim-telescope/telescope-fzf-native.nvim', build= 'make' },
    'tpope/vim-fugitive',-- git integration
    'tpope/vim-surround',
-   'nvim-telescope/telescope-ui-select.nvim', -- used for gh.nvim
    'hrsh7th/cmp-nvim-lsp',
    'hrsh7th/cmp-buffer',
    'hrsh7th/cmp-path',

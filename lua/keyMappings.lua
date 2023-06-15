@@ -1,4 +1,3 @@
---[[ keys.lua ]]
 local noremap = {noremap=true}
 local opts = { unpack(noremap), silent=true }
 
@@ -8,21 +7,6 @@ vim.keymap.set('n', '<C-k>', '<C-W>k', noremap )
 vim.keymap.set('n', '<C-h>', '<C-W>h', noremap )
 vim.keymap.set('n', '<C-l>', '<C-W>l', noremap )
 
-function ReloadAlpha()
-    for k in pairs(package.loaded) do
-        if k:match("^ghr") then
-            package.loaded[k] = nil
-        end
-    end
-  end
-
-function Combine()
-  ReloadAlpha()
-  require("ghr")
-end
-
-vim.keymap.set('n', '<leader>pra', Combine, {})
-vim.keymap.set('n', '<leader>ts', '<cmd>SearchSession<cr>')
 vim.keymap.set('n', '<leader>j', '<cmd>Navbuddy<cr>', {})
 vim.keymap.set('n', '<leader>fb', '<cmd>Telescope buffers<cr>')
 vim.keymap.set('n', '<leader>?', '<cmd>Telescope oldfiles<cr>')
@@ -32,17 +16,26 @@ vim.keymap.set('n', '<leader>fs', '<cmd>Telescope grep_string<cr>')
 vim.keymap.set('n', '<leader>fd', '<cmd>Telescope diagnostics<cr>')
 vim.keymap.set('n', '<leader>cb', '<cmd>Telescope neoclip<cr>')
 
+vim.keymap.set('n','<leader>sn', require("scretch").new)
+vim.keymap.set('n','<leader>snn', require("scretch").new_named)
+vim.keymap.set('n','<leader>sl', require("scretch").last)
+vim.keymap.set('n','<leader>ss', require("scretch").search)
+vim.keymap.set('n','<leader>sg', require("scretch").grep)
+vim.keymap.set('n','<leader>sv', require("scretch").explore)
+
 vim.keymap.set('n', '<C-;>', '<cmd>HopWord<cr>')
 vim.keymap.set('n', '<C-w>', '<cmd>bd<cr>')
 vim.keymap.set('n', '<C-p>', '<cmd>bprev<cr>')
 vim.keymap.set('n', '<C-t>', '<cmd>bnext<cr>')
-
 vim.keymap.set('n', '<C-n>', '<cmd>cnext<cr>')
 vim.keymap.set('n', '<C-b>', '<cmd>cprevious<cr>')
 vim.keymap.set('n', '<C-g>', '<cmd>Gitsigns setqflist all<cr>')
 vim.keymap.set('n', '[g', '<cmd>Gitsigns prev_hunk<cr>')
 vim.keymap.set('n', ']g', '<cmd>Gitsigns next_hunk<cr>')
 vim.keymap.set('n', '<leader>gb', '<cmd>Git blame<cr>')
+vim.keymap.set('n', '<leader>gs', '<cmd>Gitsigns stage_hunk<cr>')
+vim.keymap.set('n', '<leader>grh', '<cmd>Gitsigns reset_hunk<cr>')
+vim.keymap.set('n', '<leader>grb', '<cmd>Gitsigns reset_buffer<cr>')
 vim.keymap.set('n', '<leader>gd', '<cmd>Git diff<cr>')
 vim.keymap.set('n', 'zO', require('ufo').openAllFolds)
 vim.keymap.set('n', 'zM', require('ufo').closeAllFolds)
