@@ -3,6 +3,7 @@ return {
   config = function()
     local dap = require('dap')
 
+
     -- Configure the Go adapter
     dap.adapters.go = {
       type = 'server',
@@ -24,7 +25,7 @@ return {
         type = 'go',
         name = 'Debug Package',
         request = 'launch',
-        program = './main.go',
+        program = '${workspaceFolder}', -- Use the workspace folder to debug the entire package
       },
     }
 

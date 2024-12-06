@@ -185,7 +185,7 @@ lspconfig.pyright.setup {
 lspconfig.gopls.setup{
   on_attach=on_attach,
 }
-lspconfig.tsserver.setup {
+lspconfig.ts_ls.setup {
   on_attach = on_attach,
   flags = lsp_flags,
   settings = {
@@ -216,6 +216,28 @@ lspconfig.tsserver.setup {
     },
   }
 }
+
+lspconfig.clangd.setup({
+  on_attach = on_attach,
+  cmd = {
+    "clangd",
+    "--background-index",
+    -- "--clang-tidy",
+    "--header-insertion=iwyu",
+    "--completion-style=detailed",
+    "--function-arg-placeholders",
+    "--fallback-style=llvm",
+    -- Specific to macOS to find system headers
+    "--query-driver=/opt/homebrew/opt/llvm/bin/clang++",
+    "--enable-config",  -- Add this to ensure clangd reads the config file
+  },
+  init_options = {
+    clangdFileStatus = true,
+    usePlaceholders = true,
+    completeUnimported = true,
+    semanticHighlighting = true
+  },
+})
 
 
 lspconfig.lua_ls.setup {
