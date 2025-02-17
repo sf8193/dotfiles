@@ -1,0 +1,34 @@
+{
+	"logger": {
+		"prefix": "lg",
+		"body": [
+			"console.log(JSON.stringify(${1:var}, null, 2) + ${2:var description})"
+		]
+	},
+
+	"loggerUtil": {
+		"prefix": "lug",
+		"body": [
+      "//@ts-ignore: no require",
+      "const util = require('util')",
+			"console.log(util.inspect(${1:var}) + ${2:var description})"
+		]
+	},
+
+	"const assignment": {
+		"prefix": "co",
+		"body": [
+			"const ${1: newVar} = ${2: fromVar}"
+		]
+	},
+
+  "async function": {
+		"prefix": "af",
+		"body": [
+			"async function ${1:functionName}(ctx: ${2:ctxType}, ${3: params}): Promise<${4: return type}> {",
+			"  return $4",
+			"}"
+		],
+		"description": "create an async function"
+	}
+}
