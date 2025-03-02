@@ -46,3 +46,28 @@ vim.keymap.set('n', ']e', vim.diagnostic.goto_next, opts)
 vim.keymap.del('n', '<C-W>d')
 vim.keymap.del('n', '<C-W><C-D>')
 
+vim.keymap.set("n", "<leader>tv", "<cmd>PrtChatToggle<cr>", { desc = "Toggle Parrot Chat vsplit" })
+vim.keymap.set("n", "<leader>ty", "<cmd>PrtChatToggle popup<cr>", { desc = "Toggle Parrot Chat in popup" })
+vim.keymap.set("n", "<leader>tcm","<cmd>PrtCommitMsg popup<cr>", { desc = "show me commit message for changes" })
+vim.keymap.set("n", "<leader>tf", "<cmd>PrtChatFinder popup<cr>", { desc = "show me chats" })
+vim.keymap.set("v", "<leader>tpv","<cmd>'<,'>PrtChatPaste vsplit<cr>", { desc = "paste into vsplit" })
+
+vim.keymap.set("n", "<leader>trf","<cmd>PrtRefactorFile<cr>", { desc = "refactor whole file" })
+vim.keymap.set("v", "<leader>trf","<cmd>'<,'>RefactorFileSelection<cr>", { desc = "refactor selected code with file context" })
+
+
+vim.keymap.set({"n", "v"}, "<leader>td", function()
+  if vim.fn.mode() == "v" or vim.fn.mode() == "V" or vim.fn.mode() == "\22" then
+    vim.cmd("'<,'>PrtDebug")
+  else
+    vim.cmd("PrtDebug")
+  end
+end, { desc = "Debug multicontext with selection" })
+
+vim.keymap.set({"n", "v"}, "<leader>tdf", function()
+  if vim.fn.mode() == "v" or vim.fn.mode() == "V" or vim.fn.mode() == "\22" then
+    vim.cmd("'<,'>PrtDebugFile")
+  else
+    vim.cmd("PrtDebugFile")
+  end
+end, { desc = "Debug file with context or selection" })
