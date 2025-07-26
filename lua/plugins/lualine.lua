@@ -7,7 +7,7 @@
 --     return require("nvim-navic").is_available()
 -- end
 --
-local session = require('auto-session')
+-- local session = require('auto-session')
 return {
   'nvim-lualine/lualine.nvim',
   opts =  {
@@ -15,13 +15,13 @@ return {
       theme = 'onedark',
     },
     sections = {
-    --   lualine_a = {
-    --     {
-    --     'filename',
-    --      path=0,
-    --     },
-    -- },
-      lualine_x = { session.current_session_name },
+      lualine_a = {
+        {
+        'filename',
+         path=0,
+        },
+    },
+      -- lualine_x = { session.current_session_name },
     },
     tabline = {
       lualine_a = {

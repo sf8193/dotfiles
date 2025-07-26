@@ -31,6 +31,27 @@ return {
             prt.Prompt(params, prt.ui.Target.popup, model_obj, nil, template)
           end
         end,
+        FeatureHelpSelection = function(prt, params)
+          local template = [[
+        I want you to act as {{filetype}} expert.
+        Review the following code, carefully examine it, and help me
+        use and/or enhnace it.
+        Keep your explanation short and to the point:
+
+        ```{{filetype}}
+        {{multifilecontent}}
+        ```
+
+        Please look at the following section specifically:
+
+        ```{{filetype}}
+        {{selection}}
+        ```
+        ]]
+          local model_obj = prt.get_model "command"
+          prt.logger.info("Debugging selection with model: " .. model_obj.name)
+          prt.ChatNew(params, template)
+        end,
         Debug = function(prt, params)
           local template = [[
         I want you to act as {{filetype}} expert.
@@ -41,6 +62,23 @@ return {
         ```{{filetype}}
         {{multifilecontent}}
         ```
+
+        Please look at the following section specifically:
+
+        ```{{filetype}}
+        {{selection}}
+        ```
+        ]]
+          local model_obj = prt.get_model "command"
+          prt.logger.info("Debugging selection with model: " .. model_obj.name)
+          prt.ChatNew(params, template)
+        end,
+        DebugSelection = function(prt, params)
+          local template = [[
+        I want you to act as {{filetype}} expert.
+        Review the following code, carefully examine it, and report potential
+        bugs and edge cases alongside solutions to resolve them.
+        Keep your explanation short and to the point:
 
         Please look at the following section specifically:
 
@@ -124,6 +162,36 @@ return {
 
         ```{{filetype}}
         {{selection}}
+        ```
+        ]]
+          local model_obj = prt.get_model "command"
+          prt.logger.info("Debugging selection with model: " .. model_obj.name)
+          prt.ChatNew(params, template)
+        end,
+        ExplainSelection = function(prt, params)
+          local template = [[
+        I want you to act as {{filetype}} expert.
+        Review the following code, carefully examine it,
+        and explain it to me keep your explanation short and to the point:
+        Please look at the following section specifically:
+
+        ```{{filetype}}
+        {{selection}}
+        ```
+        ]]
+          local model_obj = prt.get_model "command"
+          prt.logger.info("Debugging selection with model: " .. model_obj.name)
+          prt.ChatNew(params, template)
+        end,
+
+        TestFile = function(prt, params)
+          local template = [[
+        I want you to act as {{filetype}} expert.
+        Review the following code, carefully examine it,
+        and write tests to test its functionality:
+
+        ```{{filetype}}
+        {{filecontent}}
         ```
         ]]
           local model_obj = prt.get_model "command"

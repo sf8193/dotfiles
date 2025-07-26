@@ -1,6 +1,6 @@
 return {
   'kevinhwang91/nvim-ufo',
-  ft = {"ts", "typescriptreact", "js", "javascriptreact", "go", "cpp"},
+  ft = {"typescript", "typescriptreact", "js", "javascriptreact", "go", "scala", "ruby", "yaml"},
   dependencies = {
     'kevinhwang91/promise-async',
     'nvim-treesitter/nvim-treesitter',

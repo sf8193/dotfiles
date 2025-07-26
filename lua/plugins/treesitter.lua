@@ -32,6 +32,7 @@ return {
         'css',
         'json',
         'lua',
+        'scala', -- Add this line
       },
 
       -- Install parsers synchronously (only applied to `ensure_installed`)
